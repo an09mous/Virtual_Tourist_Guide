@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CommentBox extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-    double deviceWidth = MediaQuery.of(context).size.width;
-    double deviceHeight = MediaQuery.of(context).size.height;
-
-    return Card(
-      child: Stack(
+  Widget _buildCommentBox(deviceWidth, deviceHeight, name, time, description) {
+    return Container(
+      height: deviceHeight * 0.220,
+      child: Card(
+          child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           Align(
@@ -18,33 +15,67 @@ class CommentBox extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     Container(
-                      child: CircleAvatar(
-                        child: Image.asset('dm.jpg'),
-                      ),
+                      height: deviceHeight * 0.150,
+                      width: deviceWidth * 0.150,
+                      decoration: new BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(
+                              image: new AssetImage('assets/demo.jpg'),
+                              fit: BoxFit.contain)),
                     ),
-                    SizedBox(width: deviceWidth * 0.125,),
+                    SizedBox(
+                      width: deviceWidth * 0.050,
+                    ),
                     Column(
                       children: <Widget>[
                         Container(
-                          child: Text('Ken Adama'),
+                          child: Text(
+                            name,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
                         ),
-                        SizedBox(height: deviceHeight * 0.120,),
+                        SizedBox(
+                          height: deviceHeight * 0.0050,
+                        ),
                         Container(
-                          child: Text('2 days ago'),
+                          margin: EdgeInsets.only(right: deviceWidth * 0.070),
+                          child: Text(
+                            time,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey,
+                                fontSize: 15),
+                          ),
                         )
                       ],
                     )
                   ],
                 ),
-                SizedBox(height: deviceHeight * 0.150,),
                 Container(
-                  child: Text('...........Description...........'),
-                )
+                    margin: EdgeInsets.only(
+                        right: deviceWidth * 0.4958, left: deviceWidth * 0.140),
+                    child: Text(
+                      description,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600, color: Colors.grey),
+                    ))
               ],
             ),
           )
         ],
-      )
+      )),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double deviceWidth = MediaQuery.of(context).size.width;
+    double deviceHeight = MediaQuery.of(context).size.height;
+
+    return Scaffold(
+      body: _buildCommentBox(deviceWidth, deviceHeight, 'Ken Adams',
+          '2 days ago', 'Hello Everyone'),
     );
   }
 }
