@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gogoa/custom_widgets/comment_box.dart';
+import 'package:gogoa/pages/details.dart';
 
 void main() => runApp(GoGoa());
 
@@ -11,7 +11,7 @@ class GoGoa extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CommentBox()
+      home: Details()
     );
   }
 }
